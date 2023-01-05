@@ -7,30 +7,30 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { TodoService } from './two-factor-auth.service';
+import { TwoFactorAuthService } from './two-factor-auth.service';
 import { TwoFactorAuthSendTokenRequestDTO } from './dto/req/two-factor-auth-req.dto';
 
 @Controller('two-factor')
 export class TwoFactorAuthController {
-  constructor(private readonly todoService: TodoService) {}
+  constructor(private readonly twoFactorAuthService: TwoFactorAuthService) {}
 
   @Post('sendToken')
-  create(@Body() body: TwoFactorAuthSendTokenRequestDTO) {
-    return this.todoService.sendToken(body);
+  async create(@Body() body: TwoFactorAuthSendTokenRequestDTO) {
+    return this.twoFactorAuthService.sendToken(body);
   }
 
   @Get()
   findAll() {
-    return this.todoService.findAll();
+    return this.twoFactorAuthService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.todoService.findOne(+id);
+    return this.twoFactorAuthService.findOne(+id);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.todoService.remove(+id);
+    return this.twoFactorAuthService.remove(+id);
   }
 }

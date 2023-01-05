@@ -1,1 +1,3 @@
-export class TwoFactorAuthSendTokenRequestDTO {}
+export class TwoFactorAuthSendTokenRequestDTO {
+  cellphoneNumber: string;
+}

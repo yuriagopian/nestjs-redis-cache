@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TodoModule } from './two-factor-auth/todo.module';
+import { TwoFactorAuthModule } from './two-factor-auth/two-factor-auth.module';
 
 @Module({
-  imports: [TodoModule],
+  imports: [TwoFactorAuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
