@@ -7,7 +7,7 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { TodoService } from './todo.service';
+import { TodoService } from './two-factor-auth.service';
 import { TwoFactorAuthSendTokenRequestDTO } from './dto/req/two-factor-auth-req.dto';
 import { UpdateTodoDto } from './dto/req/update-todo.dto';
 

@@ -1,13 +1,12 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
-import { CreateTodoDto } from './dto/req/two-factor-auth-req.dto';
-import { UpdateTodoDto } from './dto/req/update-todo.dto';
+import { TwoFactorAuthSendTokenRequestDTO } from './dto/req/two-factor-auth-req.dto';
 import { Cache } from 'cache-manager';
 
 @Injectable()
 export class TodoService {
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
-  create(createTodoDto: CreateTodoDto) {
+  sendToken(createTodoDto: TwoFactorAuthSendTokenRequestDTO) {
     return 'This action adds a new todo';
   }
 
@@ -36,10 +35,6 @@ export class TodoService {
 
   findOne(id: number) {
     return `This action returns a #${id} todo`;
-  }
-
-  update(id: number, updateTodoDto: UpdateTodoDto) {
-    return `This action updates a #${id} todo`;
   }
 
   remove(id: number) {

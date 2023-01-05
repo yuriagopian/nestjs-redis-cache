@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TodoService } from './todo.service';
-import { TodoController } from './todo.controller';
+import { TodoService } from './two-factor-auth.service';
+import { TwoFactorAuthController } from './two-factor-auth.controller';
 import { RedisCacheModule } from '../redis-cache/redis-cache.module';
 
 @Module({
   imports: [RedisCacheModule],
-  controllers: [TodoController],
+  controllers: [TwoFactorAuthController],
   providers: [TodoService],
 })
 export class TodoModule {}
