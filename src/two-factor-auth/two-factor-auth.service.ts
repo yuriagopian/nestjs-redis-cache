@@ -3,10 +3,10 @@ import { TwoFactorAuthSendTokenRequestDTO } from './dto/req/two-factor-auth-req.
 import { Cache } from 'cache-manager';
 
 @Injectable()
-export class TodoService {
+export class TwoFactorAuthService {
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
-  sendToken(createTodoDto: TwoFactorAuthSendTokenRequestDTO) {
+  sendToken(body: TwoFactorAuthSendTokenRequestDTO) {
     return 'This action adds a new todo';
   }
 
