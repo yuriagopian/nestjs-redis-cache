@@ -1,6 +1,6 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
-import { CreateTodoDto } from './dto/two-factor-auth-req.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
+import { CreateTodoDto } from './dto/req/two-factor-auth-req.dto';
+import { UpdateTodoDto } from './dto/req/update-todo.dto';
 import { Cache } from 'cache-manager';
 
 @Injectable()

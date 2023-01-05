@@ -8,11 +8,11 @@ import {
   Delete,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
-import { TwoFactorAuthSendTokenRequestDTO } from './dto/two-factor-auth-req.dto';
-import { UpdateTodoDto } from './dto/update-todo.dto';
+import { TwoFactorAuthSendTokenRequestDTO } from './dto/req/two-factor-auth-req.dto';
+import { UpdateTodoDto } from './dto/req/update-todo.dto';
 
 @Controller('two-factor')
-export class TodoController {
+export class TwoFactorAuthController {
   constructor(private readonly todoService: TodoService) {}
 
   @Post('sendToken')
