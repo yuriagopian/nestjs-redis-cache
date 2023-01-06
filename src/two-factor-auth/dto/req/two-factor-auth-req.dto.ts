@@ -1,6 +1,8 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
 export class TwoFactorAuthSendTokenRequestDTO {
+  @IsNotEmpty()
+  @IsString()
   cellphoneNumber: string;
 }
 
