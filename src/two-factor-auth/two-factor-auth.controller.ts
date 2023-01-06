@@ -8,7 +8,10 @@ import {
   Delete,
 } from '@nestjs/common';
 import { TwoFactorAuthService } from './two-factor-auth.service';
-import { TwoFactorAuthSendTokenRequestDTO } from './dto/req/two-factor-auth-req.dto';
+import {
+  TwoFactorAuthSendTokenRequestDTO,
+  TwoFactorAuthConfirmTokenRequestDTO,
+} from './dto/req/two-factor-auth-req.dto';
 
 @Controller('two-factor')
 export class TwoFactorAuthController {
@@ -18,6 +21,9 @@ export class TwoFactorAuthController {
   async create(@Body() body: TwoFactorAuthSendTokenRequestDTO) {
     return this.twoFactorAuthService.sendToken(body);
   }
+
+  @Post('confirmToken')
+  async confirmToken(@Body() body: TwoFactorAuthConfirmTokenRequestDTO) {}
 
   @Get()
   findAll() {
