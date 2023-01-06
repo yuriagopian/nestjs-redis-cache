@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import {
   TwoFactorAuthConfirmTokenResponseDTO,
   TwoFactorAuthSendTokenResponseDTO,
@@ -21,6 +30,7 @@ export class TwoFactorAuthController {
   }
 
   @Post('confirmToken')
+  @HttpCode(HttpStatus.OK)
   async confirmToken(
     @Body() body: TwoFactorAuthConfirmTokenRequestDTO,
   ): Promise<TwoFactorAuthConfirmTokenResponseDTO> {
