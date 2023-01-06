@@ -1,0 +1,3 @@
+export enum TOKEN_STATUS {
+  CONFIRMED = 'CONFIRMED',
+}

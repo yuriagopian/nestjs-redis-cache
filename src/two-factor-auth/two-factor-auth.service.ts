@@ -1,7 +1,16 @@
-import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
-import { TwoFactorAuthSendTokenRequestDTO } from './dto/req/two-factor-auth-req.dto';
+import {
+  CACHE_MANAGER,
+  Inject,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
+import {
+  TwoFactorAuthConfirmTokenRequestDTO,
+  TwoFactorAuthSendTokenRequestDTO,
+} from './dto/req/two-factor-auth-req.dto';
 import { Cache } from 'cache-manager';
 import { generateVerificationId } from './helpers/generate-verification-code.helper';
+import { tokenStatus, TOKEN_STATUS } from 'src/constants/constants';
 
 @Injectable()
 export class TwoFactorAuthService {
@@ -19,9 +28,28 @@ export class TwoFactorAuthService {
       return verificationCode;
     }
 
-    console.log(verificationCode);
-
     return verificationCode;
+  }
+
+  async confirmToken(body: TwoFactorAuthConfirmTokenRequestDTO) {
+    const { cellphoneNumber, token } = body;
+    const verificationCode = await this.cacheManager.get(cellphoneNumber);
+    const verificationCodeExists = !!verificationCode;
+    if (!verificationCodeExists) {
+      throw new UnauthorizedException('Token expired');
+    }
+
+    const isValidVerificationCode = verificationCode === token;
+
+    if (!isValidVerificationCode) {
+      throw new UnauthorizedException('Invalid Token');
+    }
+
+    const verifiedTokenPayload = {
+      status: TOKEN_STATUS.CONFIRMED,
+    };
+
+    return verifiedTokenPayload;
   }
 
   async findAll() {

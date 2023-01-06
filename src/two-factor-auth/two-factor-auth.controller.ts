@@ -23,7 +23,9 @@ export class TwoFactorAuthController {
   }
 
   @Post('confirmToken')
-  async confirmToken(@Body() body: TwoFactorAuthConfirmTokenRequestDTO) {}
+  async confirmToken(@Body() body: TwoFactorAuthConfirmTokenRequestDTO) {
+    return this.twoFactorAuthService.confirmToken(body);
+  }
 
   @Get()
   findAll() {
