@@ -69,35 +69,4 @@ export class TwoFactorAuthService {
 
     return verifiedTokenPayload;
   }
-
-  async findAll() {
-    const todos = await this.cacheManager.get('todos');
-
-    if (todos) {
-      // this returns a cached version of todos
-      return {
-        message: 'Cached Todos',
-        data: todos,
-      };
-    }
-
-    //your todo logic goes here
-    const freshTodos = [1];
-
-    // cache todos in redis
-    await this.cacheManager.set('todos', freshTodos);
-
-    return {
-      message: 'Fresh todos',
-      data: todos,
-    };
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} todo`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
-  }
 }

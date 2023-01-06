@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Param,
-  Delete,
-  HttpCode,
-  HttpStatus,
-} from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
 import {
   TwoFactorAuthConfirmTokenResponseDTO,
   TwoFactorAuthSendTokenResponseDTO,
@@ -23,6 +14,7 @@ export class TwoFactorAuthController {
   constructor(private readonly twoFactorAuthService: TwoFactorAuthService) {}
 
   @Post('sendToken')
+  @HttpCode(HttpStatus.OK)
   async create(
     @Body() body: TwoFactorAuthSendTokenRequestDTO,
   ): Promise<TwoFactorAuthSendTokenResponseDTO> {
@@ -35,20 +27,5 @@ export class TwoFactorAuthController {
     @Body() body: TwoFactorAuthConfirmTokenRequestDTO,
   ): Promise<TwoFactorAuthConfirmTokenResponseDTO> {
     return this.twoFactorAuthService.confirmToken(body);
-  }
-
-  @Get()
-  findAll() {
-    return this.twoFactorAuthService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.twoFactorAuthService.findOne(+id);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.twoFactorAuthService.remove(+id);
   }
 }
