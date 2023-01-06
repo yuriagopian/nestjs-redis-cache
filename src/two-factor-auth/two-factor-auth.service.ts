@@ -11,7 +11,10 @@ import {
 import { Cache } from 'cache-manager';
 import { generateVerificationId } from './helpers/generate-verification-code.helper';
 import { TOKEN_STATUS } from 'src/constants/constants';
-import { TwoFactorAuthSendTokenResponseDTO } from './dto/res/two-factor-auth.res.dto';
+import {
+  TwoFactorAuthConfirmTokenResponseDTO,
+  TwoFactorAuthSendTokenResponseDTO,
+} from './dto/res/two-factor-auth.res.dto';
 
 @Injectable()
 export class TwoFactorAuthService {
@@ -44,7 +47,9 @@ export class TwoFactorAuthService {
     return verificationCodeResponse;
   }
 
-  async confirmToken(body: TwoFactorAuthConfirmTokenRequestDTO) {
+  async confirmToken(
+    body: TwoFactorAuthConfirmTokenRequestDTO,
+  ): Promise<TwoFactorAuthConfirmTokenResponseDTO> {
     const { cellphoneNumber, token } = body;
     const verificationCode = await this.cacheManager.get(cellphoneNumber);
     const verificationCodeExists = !!verificationCode;
