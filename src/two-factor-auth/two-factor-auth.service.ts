@@ -10,7 +10,7 @@ import {
 } from './dto/req/two-factor-auth-req.dto';
 import { Cache } from 'cache-manager';
 import { generateVerificationId } from './helpers/generate-verification-code.helper';
-import { tokenStatus, TOKEN_STATUS } from 'src/constants/constants';
+import { TOKEN_STATUS } from 'src/constants/constants';
 
 @Injectable()
 export class TwoFactorAuthService {
